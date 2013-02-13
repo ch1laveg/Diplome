@@ -6,6 +6,7 @@ import javax.swing.DefaultListModel;
 
 public class WorkFrame extends javax.swing.JFrame {
     AddRequestForm ARF;
+    DefaultListModel namesList;
 
     public WorkFrame() {
         initComponents();
@@ -15,10 +16,12 @@ public class WorkFrame extends javax.swing.JFrame {
         this.setLocation(dim.width/2 - this.getWidth()/2, dim.height/2 - this.getHeight()/2); 
     }
     public void listRefresher(){
-        DefaultListModel namesList = new DefaultListModel();
+        namesList = new DefaultListModel();
+        namesList.clear();        
         for (int i = 0; i < DBWorker.listNames.size(); i++){
             namesList.addElement(DBWorker.listNames.get(i));
         }
+        DBWorker.listNames.clear();
         jList1.setModel(namesList);
     }
     
@@ -79,7 +82,7 @@ public class WorkFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

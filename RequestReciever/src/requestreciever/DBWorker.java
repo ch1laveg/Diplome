@@ -32,11 +32,12 @@ public class DBWorker {
         }
     }
     
-    public void setRequest(String name, String reqType, String addInfo){
+    public void setRequest(String name, int reqType, String addInfo){
         try {
             Statement st = conn.createStatement();
             st.execute("insert into requests(username, reqType, addInfo)"
                     + "values('" + name + "','" + reqType + "','" + addInfo + "') ");
+            System.out.println("Добавлено");
         } catch (SQLException ex) {
             System.out.println("Не удалось добавить заявку");
         } 

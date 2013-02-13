@@ -5,13 +5,14 @@ import javax.swing.JScrollPane;
 
 
 public class AddRequestForm extends javax.swing.JFrame {
-
+    DBWorker DBW;
 
     public AddRequestForm() {
         initComponents();
         java.awt.Dimension dim = getToolkit().getScreenSize();
         this.setLocation(dim.width/2 - this.getWidth()/2, dim.height/2 - this.getHeight()/2);
-        jEditorPane1.requestFocus();
+        jEditorPane1.requestFocus(); 
+        DBW = new DBWorker();
     }
 
     @SuppressWarnings("unchecked")
@@ -28,6 +29,8 @@ public class AddRequestForm extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
+
+        setResizable(false);
 
         jTextField1.setText("Имя");
         jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -56,8 +59,18 @@ public class AddRequestForm extends javax.swing.JFrame {
         });
 
         jButton2.setText("Отмена");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Сброс");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -70,11 +83,11 @@ public class AddRequestForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -85,6 +98,9 @@ public class AddRequestForm extends javax.swing.JFrame {
                         .addComponent(jRadioButton4)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -94,9 +110,9 @@ public class AddRequestForm extends javax.swing.JFrame {
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton3)
                     .addComponent(jRadioButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -108,7 +124,15 @@ public class AddRequestForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println(buttonGroup1.getSelection());        
+        if (jRadioButton1.isSelected()){ // Если станки
+            DBW.setRequest(jTextField1.getText(), 1, jEditorPane1.getText());
+        }
+        if (jRadioButton3.isSelected()){ // Если пилы
+            DBW.setRequest(jTextField1.getText(), 2, jEditorPane1.getText());
+        }
+        if (jRadioButton4.isSelected()){ // Если сервис
+            DBW.setRequest(jTextField1.getText(), 3, jEditorPane1.getText());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
@@ -120,6 +144,19 @@ public class AddRequestForm extends javax.swing.JFrame {
             jTextField1.setText("Имя");
         }
     }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        jTextField1.setText("Имя");
+        buttonGroup1.clearSelection();
+        jEditorPane1.setText("");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jTextField1.setText("Имя");
+        buttonGroup1.clearSelection();
+        jEditorPane1.setText("");
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
