@@ -1,9 +1,6 @@
 
 package requestreciever;
 
-import java.awt.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Refresher implements Runnable {
     DBWorker DBW;
@@ -20,13 +17,15 @@ public class Refresher implements Runnable {
             DBW.getNamesForList();
             WF.listRefresher();
             System.out.println("Обновлено " + i);
-            i++;            
+            i++; 
+            break;
+        }
             try {
-                Thread.currentThread().sleep(10000);             
+                Thread.sleep(10000);
+                this.run();
             } catch (InterruptedException ex) {
                 System.out.println("Не уснули");
-            }
-        }        
+            }                
     }
     
 }

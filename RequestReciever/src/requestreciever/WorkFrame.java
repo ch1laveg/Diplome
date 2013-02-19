@@ -2,16 +2,21 @@
 package requestreciever;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JEditorPane;
 
 
 public class WorkFrame extends javax.swing.JFrame {
     AddRequestForm ARF;
     DefaultListModel namesList;
-
-    public WorkFrame() {
-        initComponents();
-        this.setTitle("Текущие заявки");
-        ARF = new AddRequestForm();
+    DBWorker DBW;
+    AdminFrame AF;
+    int rule;
+    public WorkFrame(int rule) {
+        initComponents();        
+        this.rule = rule;
+        this.setTitle("Текущие заявки");        
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setEditable(false);
         java.awt.Dimension dim = getToolkit().getScreenSize();
         this.setLocation(dim.width/2 - this.getWidth()/2, dim.height/2 - this.getHeight()/2); 
     }
@@ -19,7 +24,12 @@ public class WorkFrame extends javax.swing.JFrame {
         namesList = new DefaultListModel();
         namesList.clear();        
         for (int i = 0; i < DBWorker.listNames.size(); i++){
-            namesList.addElement(DBWorker.listNames.get(i));
+            if (Integer.parseInt(DBWorker.reqTypeList.get(DBWorker.listNames.get(i))) == rule){
+                namesList.addElement(DBWorker.listNames.get(i));
+            }
+            else if (rule == 0){
+                namesList.addElement(DBWorker.listNames.get(i));
+            }
         }
         DBWorker.listNames.clear();
         jList1.setModel(namesList);
@@ -42,6 +52,11 @@ public class WorkFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -51,9 +66,23 @@ public class WorkFrame extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setWrapStyleWord(true);
         jScrollPane2.setViewportView(jTextArea1);
 
-        jButton1.setText("Изменить заявку");
+        jButton1.setText("Админ. Панель");
+        if (rule == 0){
+            jButton1.setEnabled(true);
+            jButton1.setVisible(true);
+        }
+        else {
+            jButton1.setEnabled(false);
+            jButton1.setVisible(false);
+        }
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Удалить заявку");
 
@@ -82,9 +111,12 @@ public class WorkFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -108,8 +140,30 @@ public class WorkFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ARF.setVisible(true);
+        ARF = new AddRequestForm();
+        this.ARF.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        DBW = new DBWorker();
+        String clickedName = String.valueOf(jList1.getSelectedValue());
+        DBWorker.id = DBW.getID(clickedName);
+        jTextArea1.setText(DBW.getAddInfoByID(DBWorker.id));
+        DBWorker.id = 0;
+        if (evt.getClickCount() == 2){
+            DBWorker.id = DBW.getID(clickedName);
+            int reqType = DBW.getReqTypeByID(DBWorker.id);
+            String username = DBW.getNameByID(DBWorker.id);
+            String addInfo = DBW.getAddInfoByID(DBWorker.id);
+            ARF = new AddRequestForm(reqType, username, addInfo);
+            this.ARF.setVisible(true);
+        }
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        AF = new AdminFrame();
+        AF.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -4,10 +4,10 @@ package requestreciever;
 public class LoginFrame extends javax.swing.JFrame {
     DBWorker DBW;
     WorkFrame WF;
+    int rule;
     public LoginFrame() {
         initComponents();
-        DBW = new DBWorker();
-        WF = new WorkFrame();
+        DBW = new DBWorker();        
         jButton1.requestFocus();
         this.setTitle("Вход");
         java.awt.Dimension dim = getToolkit().getScreenSize();
@@ -115,6 +115,8 @@ public class LoginFrame extends javax.swing.JFrame {
         String name = jTextField1.getText();
         String[] user = new String[3];
         user = DBW.getUser(name);
+        rule = Integer.parseInt(user[2]);
+        WF = new WorkFrame(rule);
         try{
             if (user[0].equals(jTextField1.getText()) && user[1].equals(password)){
                 this.setVisible(false);
