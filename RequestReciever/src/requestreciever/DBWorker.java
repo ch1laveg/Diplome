@@ -18,18 +18,19 @@ public class DBWorker {
     public static ArrayList<String> listNames;
     public static Map<String, String> reqTypeList;
     public static Map<String, String> nameID;
+    public static ArrayList<String> userList;
     public static int id = 0;
     
     public DBWorker(){
         ConnectDB = new ConnectDB();
         conn = ConnectDB.getConn();
-        listNames = new ArrayList<>();                
+        listNames = new ArrayList<>();   
+        userList = new ArrayList<>();
         this.install();
     }
     private void install(){
         try {
             Statement st = conn.createStatement();
-            st.execute("PRAGMA journal_mode=WAL;");
             st.execute("create table if not exists users("
                     + "name text, password text, rule integer)");
             st.execute("create table if not exists requests(ID INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -83,6 +84,28 @@ public class DBWorker {
         return tmp;        
     }
     
+    public void getAllUsers(){        
+        try {   
+            int i = 0;
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select name from users");
+            while(rs.next()){                
+                this.userList.add(rs.getString("name"));                
+            }
+        } catch (SQLException ex) {
+            System.out.println("Не удалось извлечь пользователей(Админ Фрейм)");
+        }
+    }
+    
+    public void DeleteUser(String user){
+        try {
+            Statement st = conn.createStatement();
+            st.execute("delete from users where name ='" + user + "'");
+        } catch (SQLException ex) {
+            System.out.println("Не удалось удалить пользователя");
+        }        
+    }
+    
     public void getNamesForList(){        
         try {
             nameID = new HashMap<>();
@@ -92,7 +115,7 @@ public class DBWorker {
             while (rs.next()){
                 int i = 1;
                 DBWorker.listNames.add(rs.getString("username"));
-                DBWorker.reqTypeList.put(rs.getString("username"), rs.getString("reqType"));
+                DBWorker.reqTypeList.put(rs.getString("username"), rs.getString("reqType")); // Типы пользователей для отображения в ворк фрейм
                 DBWorker.nameID.put(rs.getString("username"), rs.getString("ID")); //Нужен для getID
                 i++;
             }

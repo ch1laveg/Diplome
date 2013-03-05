@@ -12,10 +12,11 @@ public class ConnectDB {
     Connection conn;
     public ConnectDB(){
         try {
+            //Class.forName("org.mariadb.jdbc.MySQLDataSource");
             Class.forName("org.sqlite.JDBC");
             try {
+                //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "000111");
                 conn = DriverManager.getConnection("jdbc:sqlite:requests.db");
-                
             } catch (SQLException ex) {
                 System.out.println("SQL Exception");
             }

@@ -14,30 +14,30 @@ public class AddRequestForm extends javax.swing.JDialog {
         initComponents();
         java.awt.Dimension dim = getToolkit().getScreenSize();
         this.setLocation(dim.width/2 - this.getWidth()/2, dim.height/2 - this.getHeight()/2);
-        jTextArea1.requestFocus(); 
-        jTextArea1.setLineWrap(true);
+        RequestTextArea.requestFocus(); 
+        RequestTextArea.setLineWrap(true);
         DBW = new DBWorker();
         this.addWindowListener(new WindowListener() {
 
             @Override
             public void windowOpened(WindowEvent e) {
-                jTextField1.setText("Имя");
-                buttonGroup1.clearSelection();
-                jTextArea1.setText("");
+                RequestNameField.setText("Имя");
+                RequestsTypeButtonGroup.clearSelection();
+                RequestTextArea.setText("");
             }
 
             @Override
             public void windowClosing(WindowEvent e) {
-                jTextField1.setText("Имя");
-                buttonGroup1.clearSelection();
-                jTextArea1.setText("");
+                RequestNameField.setText("Имя");
+                RequestsTypeButtonGroup.clearSelection();
+                RequestTextArea.setText("");
             }
 
             @Override
             public void windowClosed(WindowEvent e) {
-                jTextField1.setText("Имя");
-                buttonGroup1.clearSelection();
-                jTextArea1.setText("");
+                RequestNameField.setText("Имя");
+                RequestsTypeButtonGroup.clearSelection();
+                RequestTextArea.setText("");
             }
 
             @Override
@@ -52,16 +52,16 @@ public class AddRequestForm extends javax.swing.JDialog {
 
             @Override
             public void windowActivated(WindowEvent e) {
-                jTextField1.setText("Имя");
-                buttonGroup1.clearSelection();
-                jTextArea1.setText("");
+                RequestNameField.setText("Имя");
+                RequestsTypeButtonGroup.clearSelection();
+                RequestTextArea.setText("");
             }
 
             @Override
             public void windowDeactivated(WindowEvent e) {
-                jTextField1.setText("Имя");
-                buttonGroup1.clearSelection();
-                jTextArea1.setText("");
+                RequestNameField.setText("Имя");
+                RequestsTypeButtonGroup.clearSelection();
+                RequestTextArea.setText("");
             }
         });// TODO возможно надо будет переделать, нагружает проц, обновление полей по открытию
     }
@@ -69,14 +69,14 @@ public class AddRequestForm extends javax.swing.JDialog {
         this.setModal(true);
         initComponents();
         this.reqType = reqType;
-        jButton1.setText("Применить");
-        jTextField1.setText(username);
-        jTextArea1.setText(addInfo);
+        AddRequestButton.setText("Применить");
+        RequestNameField.setText(username);
+        RequestTextArea.setText(addInfo);
         this.setFieldsIfEdit();
         java.awt.Dimension dim = getToolkit().getScreenSize();
         this.setLocation(dim.width/2 - this.getWidth()/2, dim.height/2 - this.getHeight()/2);
-        jTextArea1.requestFocus(); 
-        jTextArea1.setLineWrap(true);
+        RequestTextArea.requestFocus(); 
+        RequestTextArea.setLineWrap(true);
         DBW = new DBWorker();
         this.setFieldsIfEdit();        
     }
@@ -85,63 +85,63 @@ public class AddRequestForm extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jTextField1 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        RequestsTypeButtonGroup = new javax.swing.ButtonGroup();
+        RequestNameField = new javax.swing.JTextField();
+        StankiRadioButton = new javax.swing.JRadioButton();
+        PiliRadioButton = new javax.swing.JRadioButton();
+        ServiceRadioButton = new javax.swing.JRadioButton();
+        AddRequestButton = new javax.swing.JButton();
+        CancelButton = new javax.swing.JButton();
+        DiscardButton = new javax.swing.JButton();
+        RequestTextAreaScrollPane = new javax.swing.JScrollPane();
+        RequestTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
-        jTextField1.setText("Имя");
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        RequestNameField.setText("Имя");
+        RequestNameField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
+                RequestNameFieldFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField1FocusLost(evt);
+                RequestNameFieldFocusLost(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Станки");
+        RequestsTypeButtonGroup.add(StankiRadioButton);
+        StankiRadioButton.setText("Станки");
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Пилы");
+        RequestsTypeButtonGroup.add(PiliRadioButton);
+        PiliRadioButton.setText("Пилы");
 
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setText("Сервис");
+        RequestsTypeButtonGroup.add(ServiceRadioButton);
+        ServiceRadioButton.setText("Сервис");
 
-        jButton1.setText("Добавить");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AddRequestButton.setText("Добавить");
+        AddRequestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AddRequestButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Отмена");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        CancelButton.setText("Отмена");
+        CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CancelButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Сброс");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        DiscardButton.setText("Сброс");
+        DiscardButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                DiscardButtonActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        RequestTextArea.setColumns(20);
+        RequestTextArea.setRows(5);
+        RequestTextAreaScrollPane.setViewportView(RequestTextArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,129 +150,129 @@ public class AddRequestForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(RequestTextAreaScrollPane)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1)
+                        .addComponent(RequestNameField)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton1)
+                        .addComponent(StankiRadioButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton3)
+                        .addComponent(PiliRadioButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton4))
+                        .addComponent(ServiceRadioButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AddRequestButton, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DiscardButton, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {AddRequestButton, CancelButton, DiscardButton});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
+                    .addComponent(RequestNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StankiRadioButton)
+                    .addComponent(PiliRadioButton)
+                    .addComponent(ServiceRadioButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addComponent(RequestTextAreaScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(AddRequestButton)
+                    .addComponent(CancelButton)
+                    .addComponent(DiscardButton))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (DBWorker.id == 0){
-            if (jRadioButton1.isSelected()){ // Если станки
-                DBW.setRequest(jTextField1.getText(), 1, jTextArea1.getText());
+    private void AddRequestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddRequestButtonActionPerformed
+        if (DBWorker.id == 0){ // добавляем запрос
+            if (StankiRadioButton.isSelected()){ // Если станки
+                DBW.setRequest(RequestNameField.getText(), 1, RequestTextArea.getText());
             }
-            if (jRadioButton3.isSelected()){ // Если пилы
-                DBW.setRequest(jTextField1.getText(), 2, jTextArea1.getText());
+            if (PiliRadioButton.isSelected()){ // Если пилы
+                DBW.setRequest(RequestNameField.getText(), 2, RequestTextArea.getText());
             }
-            if (jRadioButton4.isSelected()){ // Если сервис
-                DBW.setRequest(jTextField1.getText(), 3, jTextArea1.getText());
-            }
-        }
-        else{
-            if (jRadioButton1.isSelected()){ // Если станки
-                DBW.changeRequest(DBWorker.id, jTextField1.getText(), 1, jTextArea1.getText());
-            }
-            if (jRadioButton3.isSelected()){ // Если пилы
-                DBW.changeRequest(DBWorker.id, jTextField1.getText(), 2, jTextArea1.getText());
-            }
-            if (jRadioButton4.isSelected()){ // Если сервис
-                DBW.changeRequest(DBWorker.id, jTextField1.getText(), 3, jTextArea1.getText());
+            if (ServiceRadioButton.isSelected()){ // Если сервис
+                DBW.setRequest(RequestNameField.getText(), 3, RequestTextArea.getText());
             }
         }
-        jTextField1.setText("Имя");
-        buttonGroup1.clearSelection();
-        jTextArea1.setText("");
+        else{ // изменяем запрос
+            if (StankiRadioButton.isSelected()){ // Если станки
+                DBW.changeRequest(DBWorker.id, RequestNameField.getText(), 1, RequestTextArea.getText());
+            }
+            if (PiliRadioButton.isSelected()){ // Если пилы
+                DBW.changeRequest(DBWorker.id, RequestNameField.getText(), 2, RequestTextArea.getText());
+            }
+            if (ServiceRadioButton.isSelected()){ // Если сервис
+                DBW.changeRequest(DBWorker.id, RequestNameField.getText(), 3, RequestTextArea.getText());
+            }
+        }
+        RequestNameField.setText("Имя");
+        RequestsTypeButtonGroup.clearSelection();
+        RequestTextArea.setText("");
         DBWorker.id = 0;
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_AddRequestButtonActionPerformed
 
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+    private void RequestNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RequestNameFieldFocusGained
         if (DBWorker.id == 0){
-            jTextField1.setText("");
+            RequestNameField.setText("");
         }        
-    }//GEN-LAST:event_jTextField1FocusGained
+    }//GEN-LAST:event_RequestNameFieldFocusGained
 
-    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+    private void RequestNameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_RequestNameFieldFocusLost
         if (DBWorker.id == 0){
-            if(jTextField1.getText().equals("")){
-                jTextField1.setText("Имя");
+            if(RequestNameField.getText().equals("")){
+                RequestNameField.setText("Имя");
             }
         }
-    }//GEN-LAST:event_jTextField1FocusLost
+    }//GEN-LAST:event_RequestNameFieldFocusLost
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        jTextField1.setText("Имя");
-        buttonGroup1.clearSelection();
-        jTextArea1.setText("");
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void DiscardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiscardButtonActionPerformed
+        RequestNameField.setText("Имя");
+        RequestsTypeButtonGroup.clearSelection();
+        RequestTextArea.setText("");
+    }//GEN-LAST:event_DiscardButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jTextField1.setText("Имя");
-        buttonGroup1.clearSelection();
-        jTextArea1.setText("");
+    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
+        RequestNameField.setText("Имя");
+        RequestsTypeButtonGroup.clearSelection();
+        RequestTextArea.setText("");
         DBWorker.id = 0;
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_CancelButtonActionPerformed
     
     public final void setFieldsIfEdit(){       
             if (reqType == 1){
-                jRadioButton1.setSelected(true);
+                StankiRadioButton.setSelected(true);
             }
             if (reqType == 2){
-                jRadioButton3.setSelected(true);
+                PiliRadioButton.setSelected(true);
             }
             if (reqType == 3){
-                jRadioButton4.setSelected(true);
+                ServiceRadioButton.setSelected(true);
             }                                     
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton AddRequestButton;
+    private javax.swing.JButton CancelButton;
+    private javax.swing.JButton DiscardButton;
+    private javax.swing.JRadioButton PiliRadioButton;
+    private javax.swing.JTextField RequestNameField;
+    private javax.swing.JTextArea RequestTextArea;
+    private javax.swing.JScrollPane RequestTextAreaScrollPane;
+    private javax.swing.ButtonGroup RequestsTypeButtonGroup;
+    private javax.swing.JRadioButton ServiceRadioButton;
+    private javax.swing.JRadioButton StankiRadioButton;
     // End of variables declaration//GEN-END:variables
 }
